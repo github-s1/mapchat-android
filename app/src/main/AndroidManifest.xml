@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ua.com.digitalpromo.map.chat"
+    android:installLocation="auto">
+
+
+    <!-- Protect the map component of the application using application signature -->
+    <permission
+        android:name="location.sherlock.search.view.mapv2.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature"/>
+    <!--  Allows to receive map -->
+    <uses-permission android:name="location.sherlock.search.view.mapv2.permission.MAPS_RECEIVE"/>
+    <!-- Used by the Google Maps Android API V2 to download map tiles from Google Maps servers -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!-- Allows the Google Maps Android API V2 to cache map tile data in the device's external storage area -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- Allows the Google Maps Android API V2 to use WiFi or mobile cell data (or both) to determine the device's location -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!-- Allows the Google Maps Android API V2 to use the Global Positioning System (GPS)
+    to determine the device's location to within a very small area -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <!-- Allows to contact Google Serves -->
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+
+        android:theme="@style/AppTheme">
+
+        <receiver android:name=".ConnectionStateReceiver"
+            android:label="NetworkConnection">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".activity.SplashActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/LoadTheme"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.InstractionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/LoadTheme"
+            android:windowSoftInputMode="stateAlwaysHidden">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".activity.UserInfoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity
+            android:name=".activity.MarkActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity
+            android:name=".activity.SetMarkActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity
+            android:name=".activity.KindListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity
+            android:name=".activity.MainActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden">
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH"/>
+            </intent-filter>
+
+            <!-- Points to searchable activity -->
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".MainActivity"/>
+
+            <!-- Points to searchable meta data -->
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+
+        </activity>
+        <activity
+            android:name=".activity.KindActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity
+            android:name=".activity.ImagePagerActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity
+            android:name=".activity.AuthActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity
+            android:name=".activity.SelectCityActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity
+            android:name=".activity.CameraActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+
+        <service android:name=".FindCityService"/>
+        <service android:name=".LocationService"/>
+
+        <provider
+            android:name=".fragment.find.PlaceProvider"
+            android:authorities="ua.com.digitalpromo.map.chat.PlaceProvider"
+            android:exported="false"/>
+
+        <!--<meta-data-->
+        <!--android:name="com.google.android.maps.v2.API_KEY"-->
+        <!--android:value="AIzaSyDkzkNFjkkxE5ZQM5ZyW_r_0KpA1GyxPBE"/>-->
+
+        <!--<meta-data-->
+        <!--android:name="com.google.android.gmsve.version"-->
+        <!--android:value="@integer/google_play_services_version"/>-->
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyD-Sn8PECMl4igrznq-pT2pbl-9YaL4Kv8" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+    </application>
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true"/>
+
+</manifest>
